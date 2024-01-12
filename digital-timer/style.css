@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.start {
+    background-color: skyblue;
+    color: white;
+}
+
+.stop {
+    background-color: tomato;
+    color: white;
+}
+
+.reset {
+    background-color: yellow;
+    color: #1e1e1e;
+}
+
+.timer {
+    border: 1px solid #1e1e1e;
+    font-size: 200px;
+}
