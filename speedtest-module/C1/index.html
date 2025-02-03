@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #canvas {
+            background-color: green;
+        }
+    </style>
+</head>
+<body onload="startCanvas()">
+    <div class="container">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        function startCanvas() {
+            myCanvas.start()
+            myCircle = new component(30, 30, "white", 10, 145)
+        }
+
+        let myCanvas = {
+            canvas: document.getElementById("canvas"),
+            start: function() {
+                this.canvas.width = 400
+                this.canvas.height = 320
+                this.context = this.canvas.getContext("2d")
+                this.interval = setInterval(updateCanvasArea, 20)
+            },
+            clear: function() {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+            }
+        }
+
+        function component(width, height, color, x, y) {
+            this.width = width
+            this.height = height
+            this.y = y
+            this.x = x
+            this.update = function() {
+                ctx = myCanvas.context
+                ctx.fillStyle = color
+
+                ctx.beginPath()
+                ctx.arc(this.x + (this.width / 2), this.y + (this.width / 2), (this.width / 2), 0, 2 * Math.PI)
+                ctx.fill()
+                ctx.closePath()
+
+                ctx.beginPath()
+                ctx.arc(this.x + (this.width / 2) - myCanvas.canvas.width, this.y + (this.width / 2), (this.width / 2), 0, 2 * Math.PI)
+                ctx.fill()
+                ctx.closePath()
+            }
+        }
+
+        function updateCanvasArea() {
+            myCanvas.clear()
+            myCircle.x += 5
+
+            if (myCircle.x == myCanvas.canvas.width) {
+                myCircle.x = 0
+            }
+
+            myCircle.update()
+        }
+
+        // Note:
+        // Koordinat dan ukuran shape berpengaruh dalam penganimasian.
+    </script>
+</body>
+</html>

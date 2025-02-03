@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Splitter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    .image-container {
+      position: relative;
+      display: grid;
+      gap: 0;
+    }
+
+    .image-container div {
+      position: relative;
+      background-size: 100% 100%;
+      cursor: pointer;
+      animation: fadeOut 0.5s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label for="x">X: </label>
+    <input type="number" id="x" min="1" value="5">
+    <label for="y">Y: </label>
+    <input type="number" id="y" min="1" value="3">
+    <button id="split-button">Split Image</button>
+  </div>
+
+  <div class="image-container" id="image-container">
+    <img id="source-image" src="image.jpg" alt="Source">
+  </div>
+
+  <script>
+    const splitButton = document.getElementById('split-button');
+    const imageContainer = document.getElementById('image-container');
+    const sourceImage = document.getElementById('source-image');
+
+    splitButton.addEventListener('click', () => {
+      const x = parseInt(document.getElementById('x').value, 10);
+      const y = parseInt(document.getElementById('y').value, 10);
+
+      if (x <= 0 || y <= 0) {
+        alert('Please enter valid X and Y values.');
+        return;
+      }
+
+      // Clear previous grid
+      imageContainer.innerHTML = '';
+      imageContainer.style.gridTemplateColumns = `repeat(${x}, 1fr)`;
+      imageContainer.style.gridTemplateRows = `repeat(${y}, 1fr)`;
+
+      // Get image dimensions
+      const imageUrl = sourceImage.src;
+      const imageWidth = sourceImage.naturalWidth;
+      const imageHeight = sourceImage.naturalHeight;
+      const tileWidth = imageWidth / x;
+      const tileHeight = imageHeight / y;
+
+      for (let row = 0; row < y; row++) {
+        for (let col = 0; col < x; col++) {
+          const tile = document.createElement('div');
+          tile.style.backgroundImage = `url(${imageUrl})`;
+          tile.style.backgroundPosition = `-${col * tileWidth}px -${row * tileHeight}px`;
+          tile.style.aspectRatio = `${tileWidth}/${tileHeight}`;
+
+          tile.addEventListener('click', () => {
+            tile.classList.add('hidden');
+          });
+
+          imageContainer.appendChild(tile);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

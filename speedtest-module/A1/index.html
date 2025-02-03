@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #1a1a1a;
+            padding: 1rem;
+        }
+
+        #screen-1,
+        #screen-2 {
+            display: inline-block;
+            margin-right: 4rem;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        .container {
+            width: 320px;
+            height: 640px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            /* border: 1px solid black; */
+        }
+
+        h1,
+        .container {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        header {
+            padding: 1rem;
+            background-color: skyblue;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #new-chat, 
+        #menu {
+            padding: 0 0.5rem;
+        }
+
+        #back {
+            font-size: 14px;
+        }
+
+        #new-chat, 
+        #back,
+        #menu,
+        #send {
+            cursor: pointer;
+        }
+
+        /* contact styles */
+        .contact-item {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            height: 74px;
+        }
+
+        .contact-item:hover {
+            cursor: pointer;
+            background-color: #e1e1e1;
+        }
+
+        .contact-profile {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .profile-img {
+            width: inherit;
+            height: inherit;
+            border-radius: 100%;
+            background-color: #00b7ff;
+        }
+
+        .contact-body {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .contact-body > * {
+            display: block;
+        }
+
+        #chat-preview {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* chat styles */
+        .chat-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-container {
+            height: 520px;
+            overflow-y: scroll;
+            padding: 1rem;
+        }
+
+        .chat-primary,
+        .chat-secondary {
+            width: fit-content;
+            max-width: 60%;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        .chat-primary {
+            background-color: skyblue;
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-secondary {
+            background-color: #e9e9e9;
+        }
+
+        .form-chat {
+            position: absolute;
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            padding: 1rem;
+            bottom: 0;
+        }
+
+        .form-chat input {
+            flex: 1;
+            border: 1px solid skyblue;
+            border-radius: 999px;
+            padding: 0.5rem 1rem;
+            font-size: 14px;
+            width: max-content;
+        }
+
+        .form-chat button {
+            border: none;
+            border-radius: 999px;
+            padding: 0.5rem 1rem;
+            background-color: skyblue;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="screen-1">
+        <h1>Screen 1</h1>
+
+        <div class="container">
+            <header>
+                <span>MomoTalk</span>
+                <span id="new-chat" title="New Chat">+</span>
+            </header>
+
+            <div class="contact-list">
+                <div class="contact-item">
+                    <div class="contact-profile">
+                        <!-- <img src="#" alt="Profile Image"> -->
+                        <div class="profile-img"></div>
+                    </div>
+                    <div class="contact-body">
+                        <span id="name">Ayaka</span>
+                        <span id="chat-preview">Good Morning! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui pariatur consectetur ipsum omnis est cupiditate ex maxime cum dignissimos eum. Ab, possimus incidunt. Eligendi at porro iusto enim iure atque.</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-profile">
+                        <!-- <img src="#" alt="Profile Image"> -->
+                        <div class="profile-img"></div>
+                    </div>
+                    <div class="contact-body">
+                        <span id="name">Sena</span>
+                        <span id="chat-preview">Good Morning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div id="screen-2">
+        <h1>Screen 2</h1>
+
+        <div class="container">
+            <header>
+                <div class="chat-header">
+                    <div class="contact-profile">
+                        <!-- <img src="#" alt="Profile Image"> -->
+                        <div class="profile-img"></div>
+                    </div>
+                    <span>Sena</span>
+                </div>
+                <span id="menu" title="Menu">...</span>
+            </header>
+
+            <div class="chat-container">
+                <div class="chat-primary">
+                    <span>Hello</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-secondary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Hello</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-secondary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Hello</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-secondary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Hello</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-secondary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Hello</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-secondary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Hello</span>
+                </div>
+                <div class="chat-primary">
+                    <span>Good Morning</span>
+                </div>
+                <div class="chat-secondary">
+                    <span>Good Morning</span>
+                </div>
+            </div>
+
+            <div class="form-chat">
+                <input type="text" placeholder="Type a message...">
+                <button id="send">Send</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

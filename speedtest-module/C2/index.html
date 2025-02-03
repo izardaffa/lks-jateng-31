@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input {
+            width: 5rem;
+        }
+
+        .form-group button {
+            padding: 0 0.5rem;
+        }
+
+        .img {
+            background-image: url("image.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 500px;
+            height: 300px;
+        }
+
+        .card {
+            border: 1px solid yellow;
+        }
+
+        .card.hide {
+            background-color: white;
+            animation: disappear 0.5s ease-in-out;
+        }
+
+        @keyframes disappear {
+            0% { background-color: transparent; }
+            100% { background-color: white; }
+        }
+    </style>
+</head>
+<body onload="splitImg()">
+    <div class="container">
+        <div class="form-group">
+            <form id="split-img">
+                <label for="x">X:</label>
+                <input type="text" name="x" id="x" required>
+                <label for="y">Y:</label>
+                <input type="text" name="y" id="y" required>
+                <button type="submit">Split Image</button>
+            </form>
+        </div>
+
+        <div class="img" width="500" height="300"></div>
+    </div>
+
+    <script>
+        const formSplitImg = document.getElementById('split-img');
+
+        formSplitImg.addEventListener('submit', (e) => {
+            e.preventDefault();
+            splitImg();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('card')) {
+                e.target.classList.add('hide');
+            }
+        });
+
+        function splitImg() {
+            let cols = parseInt(document.getElementById("x").value);
+            let rows = parseInt(document.getElementById("y").value);
+            let container = document.getElementsByClassName('img')[0];
+
+            // Bersihkan container sebelum membuat kotak baru
+            container.innerHTML = "";
+
+            // Atur ukuran grid
+            container.style.display = "grid";
+            container.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+            container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+            // Buat kotak
+            for (let i = 0; i < rows * cols; i++) {
+                let kotak = document.createElement("div");
+                kotak.className = "card";
+                container.appendChild(kotak);
+            }
+
+            cards = document.querySelectorAll('card');
+        }
+    </script>
+</body>
+</html>

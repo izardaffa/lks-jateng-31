@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        nav {
+            padding: 2rem;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .nav-logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .nav-item,
+        .dropdown {
+            display: inline-block;
+        }
+
+        .nav-item,
+        #dropdown-btn {
+            background-color: transparent;
+            border: none;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            margin-right: 20px;
+        }
+
+        nav .nav-menu a:hover,
+        #dropdown-btn:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        nav .nav-menu a.cto {
+            background-color: white;
+            color: #1a1a1a;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+        }
+
+        nav .nav-menu a.cto:hover,
+        .cto:hover {
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 200%;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .dropdown-content a {
+            color: #1a1a1a;
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+        }
+
+        .dropdown-content.hide {
+            display: none;
+        }
+
+        /* hero styles */
+        .hero {
+            padding: 16rem 24rem;
+            color: white;
+            background-color: gray;
+        }
+
+        .container {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container > * {
+            margin-bottom: 2rem;
+        }
+
+        .cto {
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .cto-primary {
+            background-color: white;
+            color: #1a1a1a;
+        }
+
+        .cto-secondary {
+            color: white;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <span>Plana OS</span>
+        </div>
+        <div class="nav-menu">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">News</a>
+            <a href="#" class="nav-item">About</a>
+            <div class="dropdown">
+                <button id="dropdown-btn">
+                    <span class="nav-item">Downloads &darr;</span>
+                </button>
+                <div class="dropdown-content hide">
+                    <a href="#">Version 1.0</a>
+                    <a href="#">Version 2.0</a>
+                    <a href="#">Version 3.0</a>
+                    <a href="#">Version 4.0</a>
+                </div>
+            </div>
+            <a href="#" class="cto">Get Started</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>More Privacy with Plana OS</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quod laboriosam aperiam eos, in ea eum nesciunt error minus quo itaque ratione perspiciatis, adipisci, pariatur ullam expedita quasi rerum nisi!</p>
+            <div>
+                <a href="#" class="cto cto-primary">Get Started</a>
+                <a href="#" class="cto cto-secondary">Install</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dropdownBtn = document.getElementById('dropdown-btn');
+        const dropdownMenu = document.getElementsByClassName('dropdown-content')[0];
+
+        dropdownBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hide');
+        });
+    </script>
+</body>
+</html>
